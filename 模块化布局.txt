@@ -1,0 +1,478 @@
+
+HTML+CSS知识点（基础部分）
+兼容性、百分百还原效果图
+企业类型整站开发（简单）
+电子商务类型整站开发（稍复杂一些）
+
+
+电商网站： 
+
+	1、分析
+
+		结构模块..
+		布局模块--从大块着眼
+			头部header 导航nav  搜索search  
+			主要内容main 
+				section
+				options
+				main_ad
+			侧边栏side
+				section_side
+			底部footer
+
+		可重用样式--公共样式
+
+			左浮动fl
+
+				.fl { float:left; }
+
+			右浮动fr
+
+				.fr { float:right; }
+
+			清浮动clear  
+				有浮动的地方，父级就需要清浮动
+				如果父级有高度height，那就不需要了
+
+				.clear { zoom:1; }
+				.clear:after { content:''; display:block; clear:both; }
+
+			包裹层wrap
+
+
+			渐变 
+
+				.gradient {
+			        width: 200px;
+			        height: 200px;
+			        border: 1px solid #333;
+			        /* 直接认的 */
+			        background: linear-gradient(top, #FFFFFF, #f8f8f8);
+			        /* 火狐内核 */
+			        background: -moz-linear-gradient(top, #FFFFFF, #f8f8f8);
+			        /* Chrome内核 */
+			        background: -webkit-linear-gradient(top, #FFFFFF, #f8f8f8);  
+			        /* IE10, 前缀-ms- */
+			        background: -ms-linear-gradient(top, #FFFFFF, #f8f8f8);       
+			        /* IE8,9 过滤*/
+			        -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#FFFFFF, endColorstr=#f8f8f8)";		
+			        /* HACK:IE7及以下给一个色块 */
+			        +background: #f9f9f9;    
+			    }
+
+			圆角
+
+				/* IE8及以下不支持，就让他看到直角罢 */
+				.radius {
+			        width: 400px;
+			        height: 400px;
+			        border: 1px solid #333;
+			        border-radius: 0 0 80px 20px;
+			    }
+
+			阴影
+
+				/* 支持情况：IE.... */
+				.shadow {
+			        width: 100px;
+			        height: 100px;
+			        background: #FFC;
+			        border-radius: 20px;
+			        box-shadow: 10px 20px 5px #ccc;
+			    }				
+
+
+		
+
+
+	2、布局模块--先横排，再竖排
+		
+		section 也是H5新增标签
+
+			figcaption除外都是块级元素，但需要以下设置在所有版本的浏览器中生效：
+
+				header, section, footer, aside, nav, article, figure
+				{ 
+				    display: block; 
+				}
+		
+		section(main) 和 side_section 分离，方便后期管理
+
+		<header id = "header">
+		<nav id = "nav">
+		<div id = "search">
+
+		<div class = "content">
+
+			<div class = "main fl">
+				<div class = "clear">   /*先横排再竖排*/
+					<div class = "section fl">
+					<div class = "options fr">
+				</div>
+				<div class = "main_ad"></div>
+
+				<div class = "clear">
+					<div class = "section fl">
+					<div class = "section fr">
+				</div>
+
+				<div class = "clear">
+					<div class = "options fl">
+					<div class = "options fr">
+				</div>
+				<div class = "main_ad"></div>
+
+				<div class = "clear">
+					<div class = "section fl">
+					<div class = "section fr">
+				</div>
+
+				<div class = "clear">
+					<div class = "section fl">
+					<div class = "section fr">
+				</div>
+			</div>
+
+			<aside class="side fr">
+
+				<div class = "side_section"></div>
+				<div class = "side_ad"></div>
+				<div class = "side_ad"></div>
+				<div class = "side_section"></div>
+				<div class = "side_section"></div>
+				<div class = "side_section"></div>
+				<div class = "side_section"></div>
+				<div class = "side_section"></div>
+
+			</aside>
+		</div>
+		<footer id = "footer">
+
+	
+
+	结构模块
+
+		options 的选项卡
+			title
+		section 的 main_title
+
+
+	3、 模块化布局思维
+
+	 	找出公共部分提炼，再写私有
+	 	优雅降级   扔掉IE6,7
+
+
+
+		测量圆角  选择 - 修改 - 平滑
+		图片应该是直角图片  css设置image圆角样式
+			border-radius : 6px; 
+		 	overflow : hidden;
+
+		search   砍掉头，定位超上去   
+		带边框的量边框，有padding的量padding
+
+		广告图片 有的有边框，有的没有
+			这个应该是设计来处理这件事情，保证一致性？
+			当然可以统一都加上，深色系的不明显就当做没有~
+			实在要处理，就单独一个类吧...
+
+	选项卡
+			边框给下面内容部分
+
+			IE6存在问题：
+				左边高1px,高度撑出去了
+					给下面内容部分弄个绝对定位，设置z-index
+				
+
+		修复IE6,7下浮动的div在遇到margin-bottom时失效的的bug
+			margin身上的bug很多 
+			padding却没有
+
+			给浮动元素加包裹层，设置padding-bottom  
+				给clear 处添加新类 main_wrap
+
+		line-height也存在兼容性问题
+			不同浏览器下字体不同，所以会错开一两个像素
+
+
+	
+
+	逐步实现吧~~
+
+		9-制作city中的链接：阴影配合圆角的实现
+
+			城市这个，如果需要拓展可以考虑用dl dt  dd(a span..)
+				不扩展的话，轻装上阵  p a a a....
+			line-height 不支持？
+
+		10-制作header中link链接及css sprite合并原则（类似于NGUI的sprite）
+
+			按模块合并sprite
+
+		11-制作导航、导航背景合并及尺寸测试注意事项
+
+			以最长的来定
+			从左边缘到第二个的左边缘  然后把框框移动到中间
+			给每一个都定这样的长度 划出辅助线
+			通常好的设计图纸，除了这些是偶数之外，左右边距会是一样
+
+	LOGO图是整站权重最重的一个，用h1
+
+			左右浮动，定位来实现
+
+		IE6下png图片会显示灰色背景的处理方法
+
+			加条件注释语句，只有IE6才会执行..这个通配还是有些影响性能的
+			DD_belatedPNG.fix() 中列举所有需要处理背景的选择符
+
+			<!--[if IE 6]>
+			<script src="js/DD_belatedPNG_0.0.8a.js"></script>
+			<script>
+				DD_belatedPNG.fix('*');
+			</script>
+			<![endif]-->
+
+		12.13-search
+ 
+			bar   完全盖在search上，也盖住了边框线，所以这里用定位
+
+		14.15 三角形triangle角标 公共样式
+
+			边框实现
+			transparent  IE6不认，会显示黑色，所以干脆给白色
+			overflow：hidden  IE6需要
+
+		16 main-content
+
+			大型整站，在做完每一个模块的时候要测量高度，做到分毫不差。不然后期会很麻烦
+
+		17 - 
+
+
+		18 - HOT List
+
+			ul
+				li  /* 有高避免清浮动，所以给li高 */
+					div.img.fl  a img/
+					div.text.fr
+						h3 a   	(标题)
+						p 		(文字内容)
+
+			有人喜欢左边dl  右边dt dd  扩展很不方便，不建议用
+
+		19 - 另一种选项卡 
+
+			知道分子   抢卷儿
+
+				div.tab
+					ul
+						li.active
+						li
+						li
+
+				标签高度相同， ul给border-bottom  margin-bottom: -1px; position: relative;
+				li 是完整边框   margin-right: -1px;
+				li.active  设置border-bottom 和 background 的颜色	
+
+		20 - 列表公用样式提取、3种私有模块的制作方案	
+
+				display: inline-block  中间有间隙
+				但是float 没有
+
+				li中有float 会造成三四个像素的bug
+				解决： vertical-align: middle;
+
+				折扣店
+				最新加盟 
+				抢卷儿
+				知道分子 
+
+
+		21 - wrap_section  
+
+			包裹层  修复模块化代码之间的细微差异 
+			间距问题 
+
+		22,23 - pic_list  图片列表模块化制作
+
+			
+
+		24 - new_title
+
+			英文数字测距不准，截图重合比对差值
+
+		25 - activity
+
+		26 - JS 日历...
+
+			 选择符使用规则，短且准确
+
+		27 - Recommend  焦点图
+
+			ul.big
+				li
+				li
+				li
+			ol.small
+				li
+				li
+				li
+			p
+
+		28 - BBS 列表高亮  .active
+
+		29 - HOT 红人烧客  格子排列
+
+			li  img  同时限制宽高，以免照片上传尺寸不对 
+
+	HTML CSS 部分完成之后，要在各个浏览器下打开验证是否都对齐	
+
+		IE8 不支持圆角
+		IE7 还支持渐变 rgba()半透明
+		IE6 还不支持箭头..
+
+	JS部分  jQuery来做：方法函数化,链式操作...
+
+		Uncaught ReferenceError: $ is not defined
+			1、jQuery路径错误
+			2、js文件中报错，HTML中加载jQuery库文件顺序错误，应该放在最前面
+
+
+		闭包实现.     ( function(){   ///......    } )()
+		变量互不影响?
+
+		30 - menu 搜索栏切换
+
+			aLi.each( function(index){  
+				// index 是当前活动的li 
+				// aLi[index].attr()  aLi.get(index).attr()  is not a function
+				// #(this).attr()  可用
+			});
+			oText.focus( function() {
+				// 函数中需加判断
+				// #(this)  oText   在输入框上操作时, 指向相同, 都是当前活动的元素
+			} );  
+			oText.blur( function() {
+				// ..
+			} );   
+				
+
+		31 - update 文字弹性滑动效果
+
+			按钮点击时不停止autoPlay, 这个状态不对
+
+				hover事件要放在整个div上, 而不仅仅是ul上
+					oDiv.hover 	√
+					oUl.hover 	×
+
+
+		32 - options 选项卡切换
+
+			封装一个方法
+			section  和   side_section  部分共同调用
+
+			function navTab( oNav, aCon, sEvent ) {
+
+				var aElem = oNav.children();
+				//初始化
+				aCon.hide().eq(0).show();
+				
+				aElem.each(function (index){
+					
+					$(this).on(sEvent, function (){
+						aElem.removeClass('active').addClass('gradient');
+						$(this).removeClass('gradient').addClass('active');
+						aElem.find('a').attr('class', 'triangle_down_gray');
+						$(this).find('a').attr('class', 'triangle_down_red');
+						
+						aCon.hide().eq( index ).show();
+					});
+				});
+			}
+
+
+			----抢卷儿切换显示异常
+
+				
+		33 - fade 焦点图自动播放
+
+
+		34 - 日历提示  BBS高亮显示
+
+
+		35 - HOT鼠标半透明提示
+		
+
+
+问题汇总
+	
+	1、设置宽度不起作用，还是可视区的宽度
+
+		width: 960px;  单位啊单位！！
+
+	2、模块乱七八糟
+
+		div 没有闭合 
+
+	3、太奇怪了，options下的con跟着section的定位跑了
+
+		父级的定位错写成了 absolute
+
+	4、选项卡右边多出一个像素 
+	   body设置margin-bottom 不起作用（设置了下padding又删掉就好了，好了，了..)s
+
+		真逗，自己好了
+		是电脑太TM卡了吧....晃我这么多次
+
+	5、
+
+		div#search
+			div.bar
+				ul.munu
+					li.active
+
+		给li的active设置样式 
+
+			#search .active { //部分样式失效 height border }
+			#search #menu .active { //可以 }
+
+	6、可视区下边出现滚动条
+
+		#search .menu {}   定位写成了relative
+
+	7、search的update那行 鼠标滑过不是小手，但是貌似没有额外设置cursor	 
+
+
+	8、   
+		section的内容可以撑开父级，但是
+		option 的 con 不能撑开父级
+		需要给section一个高度
+		清浮动没起作用？
+		但是options的title的浮动去掉也依然不能撑开
+
+		options的高度 > con + title  con就可以显示完全
+
+		因为con是绝对定位的，所以层级高于父级。不能通过自身来撑开父级。。。。
+		section里的内容和section都是同层级的 
+
+		关于浮动二三事....
+
+		section
+			h2
+			div
+			ul
+
+		options
+			ul
+				li.fl
+				li.fr
+			con
+
+	9、	鼠标移入停止自动播放， 移开继续。点击可切换
+		按钮点击时不停止autoPlay, 这个状态不对
+
+			hover事件要放在整个div上, 而不仅仅是ul上
+				oDiv.hover 	√
+				oUl.hover 	×
+

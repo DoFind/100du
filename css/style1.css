@@ -1,0 +1,347 @@
+/* 清除原生样式reset */
+
+header,
+nav,
+section,
+aside,
+footer {
+    display: block;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+dl,
+dd,
+ul,
+ol,
+form,
+input,
+textarea,
+th,
+td,
+select {
+    margin: 0;
+    padding: 0;
+}
+
+em {
+    font-style: normal;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: none;
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+input,
+textarea {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    overflow: auto;
+}
+
+body {
+    font-size: 12px;
+    font-family: "微软雅黑";
+}
+
+
+/* end reset */
+
+
+/* 公用样式 public */
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear {
+    zoom: 1;
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.gradient {
+    /* 直接认的 */
+    background: linear-gradient(top, #FFFFFF, #f8f8f8);
+    /* 火狐内核 */
+    background: -moz-linear-gradient(top, #FFFFFF, #f8f8f8);
+    /* Chrome内核 */
+    background: -webkit-linear-gradient(top, #FFFFFF, #f8f8f8);
+    /* IE10, 前缀-ms- */
+    background: -ms-linear-gradient(top, #FFFFFF, #f8f8f8);
+    /* IE8,9 过滤*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#FFFFFF, endColorstr=#f8f8f8)";
+    /* HACK:IE7及以下给一个色块 */
+    +background: #f9f9f9;
+}
+/* end public */
+
+
+/* 布局模块 layout */
+
+#header,
+#nav,
+.content {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#search,
+.section,
+.side_section,
+.ad_border,
+#footer {
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+}
+
+.main_ad,
+.side_section,
+.side_ad,
+.ad_border {
+    margin-bottom: 10px;
+}
+
+body {
+    margin-bottom: 30px;
+}
+
+#header {
+    width: 960px;
+    height: 30px;
+    margin: 0 auto;
+    border-radius: 0 0 6px 6px;
+}
+
+#nav {
+	position: relative;
+    height: 100px;
+}
+
+#search {
+    width: 960px;
+    height: 114px;
+    margin: 0 auto 10px;
+}
+
+
+/* 主体部分的左边 main */
+
+.main {
+    width: 710px;
+}
+.main_wrap {
+	padding-bottom: 10px;
+}
+
+.section {
+    width: 318px;
+    height: 60px;
+    padding: 0 15px;
+}
+
+.options {
+    width: 350px;
+    height: 200px;
+    position: relative;
+}
+
+
+/* 广告图片设置圆角 */
+
+.main_ad {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+
+/* 侧边栏 */
+
+.side {
+    width: 240px;
+}
+
+.side_section {
+    height: 60px;
+    padding: 12px;
+}
+
+.side_ad {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.ad_border {
+    overflow: hidden;
+}
+
+#footer {
+    width: 958px;
+    height: 64px;
+    margin: 0 auto;
+}
+
+
+/* end layout */
+
+
+
+/* options标签页详细 */
+
+.options .nav {
+	height: 34px;
+	position: relative;
+	z-index: 2;
+}
+.options .nav li {
+	width: 172px;
+	height: 33px;
+	border: 1px solid #dbdbdb;
+	border-bottom: none;
+    border-radius: 6px 6px 0 0;
+}
+.options .nav .active {
+	height: 34px;
+	background: #fff;
+}
+.options .con {
+	width: 348px;
+	height: 100px;
+	border: 1px solid #dbdbdb;
+    border-radius: 0 0 6px 6px;
+    position: absolute;
+    top: 34px;
+    left: 0;
+    z-index: 1;
+}
+
+/* header头部详细 */
+#header .city {
+	padding: 5px 0 0 20px;
+	color: #666;	
+}
+#header .city a {
+	display: inline-block;
+	padding: 0 7px;
+	height: 18px;
+	line-height: 18px;
+	color: #999;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	box-shadow: 1px 1px 0 #ddd;
+}
+#header .city a.active,
+#header .city .active:hover {
+	color: #d60d03;
+	background: #fff;
+}
+#header .city a:hover {
+	background: #f1f1f1;
+}
+#header .link {
+	padding-right: 20px;
+	line-height: 30px;
+	color: #d5d5d5;
+	word-spacing: 4px;
+}
+#header .link a {
+	color: #666;
+	background: url("../img/header_link_bg.gif") no-repeat;
+	padding-left: 20px;
+}
+#header .link a:hover {
+	text-decoration: underline;
+}
+#header .link .ico1 {
+	background-position: 0 3px;
+}
+#header .link .ico2 {
+	background-position: 0 -27px;
+}
+
+/* nav导航栏详细 */
+#nav ul {
+	position: absolute;
+	top: 10px;
+}
+#nav li {
+	float: left;
+}
+#nav li a {
+	display: block;
+	width: 66px;
+	padding-top: 50px;
+	text-align: center;
+	background: url(../img/nav_bg.png) no-repeat;
+	color: #666;
+}
+#nav li a:hover {
+	color:#a70c01;
+}
+
+#nav .nav1 {
+	left: 11px;
+}
+#nav .nav2 {
+	right: 11px;
+}
+h1 {
+	margin: 0 auto;
+	position: relative;
+	top: 10px;
+
+	width: 223px;
+	height: 62px;
+}
+
+#nav .bg1 { background-position: 0 0; }
+#nav .bg2 { background-position: -66px 0; }
+#nav .bg3 { background-position: -132px 0; }
+#nav .bg4 { background-position: -198px 0; }
+#nav .bg5 { background-position: -264px 0; }
+#nav .bg6 { background-position: -330px 0; }
+#nav .bg7 { background-position: -396px 0; }
+#nav .bg8 { background-position: -462px 0; }
+#nav .bg9 { background-position: -528px 0; }
+#nav .bg10 { background-position: -594px 0; }
+
+#nav .bg1:hover { background-position: 0 -70px; }
+#nav .bg2:hover { background-position: -66px -70px; }
+#nav .bg3:hover { background-position: -132px -70px; }
+#nav .bg4:hover { background-position: -198px -70px; }
+#nav .bg5:hover { background-position: -264px -70px; }
+#nav .bg6:hover { background-position: -330px -70px; }
+#nav .bg7:hover { background-position: -396px -70px; }
+#nav .bg8:hover { background-position: -462px -70px; }
+#nav .bg9:hover { background-position: -528px -70px; }
+#nav .bg10:hover { background-position: -594px -70px; }
